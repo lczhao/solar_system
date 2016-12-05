@@ -15,6 +15,17 @@ export default class Planet {
     this.accY = 0;
   }
 
+  collide = (p2) => {
+    const { x: x1, y: y1, r: r1 } = this;
+    const { x: x2, y: y2, r: r2 } = p2;
+    const deltX = x1 - x2, deltY = y1 - y2;
+    const dist = Math.sqrt(Math.pow(deltX, 2) + Math.pow(deltY, 2));
+    if (dist < (r1 + r2)) {
+      return true;
+    }
+    return false;
+  }
+
   setVelocity = (velX, velY) => {
     this.velX = velX;
     this.velY = velY;
@@ -30,6 +41,10 @@ export default class Planet {
       const fg = G * m1 * m2 / r;
       fx += fg * deltX / r;
       fy += fg * deltY / r;
+      if (p.collide(this)) {
+        fx = -fx * 1.1;
+        fy = -fy * 1.1;
+      }
     });
     this.accX = fx / m1;  // a = F / m
     this.accY = fy / m1;

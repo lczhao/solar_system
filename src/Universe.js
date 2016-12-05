@@ -4,14 +4,12 @@ export default class Universe {
   }
 
   move = () => {
-    // this.planets[0].calculateNetForce([this.planets[1]]);
-    // this.planets[1].calculateNetForce([this.planets[0]]);
     this.planets.forEach((p, i) => {
       const planetsCopy = [...this.planets];
       planetsCopy.splice(i, 1);
       p.calculateNetForce(planetsCopy);
-      p.move();
     });
+    this.planets.forEach(p => p.move());
   }
 
   draw = (ctx) => {
