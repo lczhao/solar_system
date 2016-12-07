@@ -11,14 +11,16 @@ const ctx = canvas.getContext('2d');
 
 // initalize planets
 const bg = new Background(WIDTH, HEIGHT);
-const p1 = new Planet(WIDTH / 2, HEIGHT / 2, 'yellow', 500);
-const p2 = new Planet(WIDTH / 2 + 300, HEIGHT / 2, 'blue', 500, 1);
-const p3 = new Planet(WIDTH / 2 - 300, HEIGHT / 2, 'red', 500, 1);
+const p1 = new Planet(WIDTH / 2, HEIGHT / 2, 'yellow', 5000000);
+const p2 = new Planet(WIDTH / 2 + 250, HEIGHT / 2, 'blue', 500);
+const p3 = new Planet(WIDTH / 2 + 200, HEIGHT / 2, 'red', 500);
+const p4 = new Planet(WIDTH / 2 + 253, HEIGHT / 2, 'red', 1, 1);
 
-p2.setVelocity(0, -1.5);
-p3.setVelocity(0.0, 1.5);
+p2.setVelocity(0, 1.43);
+p3.setVelocity(0.0, 1.30);
+p4.setVelocity(0, 1.30);
 
-const universe = new Universe([ p1, p2, p3 ]);
+const universe = new Universe([ p1, p2, p3, p4 ]);
 
 // initialize EM
 const em = new EventManager(FRAME_RATE, ctx);

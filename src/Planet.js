@@ -1,11 +1,11 @@
 import { G } from './constants';
 
 export default class Planet {
-  constructor(x = 0, y = 0, color = 'red', mass = 150, rho = 1) {
+  constructor(x = 0, y = 0, color = 'red', mass = 1500, rho = 4) {
     this.x = x;
     this.y = y;
     this.mass = mass;
-    this.r = Math.sqrt(mass) / rho;
+    this.r = Math.cbrt(mass) / rho;
     this.color = color;
 
     this.velX = 0;    // vel = a * t;
@@ -38,12 +38,12 @@ export default class Planet {
       const { x: x2, y: y2, mass: m2 } = p;
       const deltX = x1 - x2, deltY = y1 - y2;
       const r = Math.sqrt(Math.pow(deltX, 2) + Math.pow(deltY, 2));
-      const fg = G * m1 * m2 / r;
+      const fg = G * m1 * m2 / Math.pow(r, 2);
       fx += fg * deltX / r;
       fy += fg * deltY / r;
       if (p.collide(this)) {
-        fx = -fx * 1.1;
-        fy = -fy * 1.1;
+        fx = -fx * 0.1;
+        fy = -fy * 0.1;
       }
     });
     this.accX = fx / m1;  // a = F / m
